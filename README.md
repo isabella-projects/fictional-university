@@ -13,7 +13,7 @@
     <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg"  title="JavaScript" alt="JavaScript" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/jquery/jquery-original.svg"  title="jQuery" alt="jQuery" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg"  title="ReactJS" alt="ReactJS" width="45" height="45"/>&nbsp;
-    <img src="https://github.com/devicons/devicon/blob/master/icons/php/php-plain.svg" title="PHP" alt="PHP" width="45" height="45"/>&nbsp;
+    <img src="https://github.com/devicons/devicon/blob/master/icons/php/php-original.svg" title="PHP" alt="PHP" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/wordpress/wordpress-plain.svg" title="WordPress" alt="WordPress" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/nginx/nginx-original.svg" title="nginx" alt="nginx" width="45" height="45"/>&nbsp;
     <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" alt="Git" width="45" height="45"/>&nbsp;
@@ -25,21 +25,13 @@
 ## Clone the project
 
 ```bash
-  git clone https://github.com/isabella-projects/workopia.git
+  git clone https://github.com/isabella-projects/fictional-university.git
 ```
 
 ## Go to the project directory
 
 ```bash
-  cd workopia
+  cd fictional-university
 ```
 
-## Run a local server.
-
-## Change root directory to:
-
-```bash
-  /public
-```
-
-# 🧪 Start the server
+# 🧪 Enjoy!
