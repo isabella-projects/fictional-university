@@ -32,34 +32,12 @@
                     ]
                 ]
             ]);
+
+            while ($homepageEvents->have_posts()) {
+                $homepageEvents->the_post();
+                get_template_part('templates/content', 'event');
+            }
             ?>
-            <?php while ($homepageEvents->have_posts()) : $homepageEvents->the_post(); ?>
-                <div class="event-summary">
-                    <a class="event-summary__date t-center" href="#">
-                        <span class="event-summary__month">
-                            <?php
-                            $eventMonth = new DateTime(get_field('event_date'));
-                            echo $eventMonth->format('M');
-                            ?>
-                        </span>
-                        <span class="event-summary__day">
-                            <?php
-                            $eventDay = new DateTime(get_field('event_date'));
-                            echo $eventDay->format('d');
-                            ?>
-                        </span>
-                    </a>
-                    <div class="event-summary__content">
-                        <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
-                        <p>
-                            <?php if (has_excerpt()) : echo get_the_excerpt(); ?>
-                            <?php else : echo wp_trim_words(get_the_content(), 18); ?>
-                            <?php endif; ?>
-                            <a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a>
-                        </p>
-                    </div>
-                </div>
-            <?php endwhile; ?>
 
             <p class="t-center no-margin"><a href="<?= get_post_type_archive_link('event'); ?>" class="btn btn--blue">View All Events</a></p>
         </div>

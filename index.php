@@ -1,14 +1,11 @@
-<?php get_header(); ?>
+<?php
+get_header();
 
-<div class="page-banner">
-    <div class="page-banner__bg-image" style="background-image: url(<?= get_theme_file_uri('/images/ocean.jpg') ?>)"></div>
-    <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title">Welcome to our blog!</h1>
-        <div class="page-banner__intro">
-            <p>Keep up with our latest news.</p>
-        </div>
-    </div>
-</div>
+pageBanner([
+    'title' => 'Welcome to our blog!',
+    'subtitle' => 'Keep up with our latest news'
+]);
+?>
 
 <div class="container container--narrow page-section">
     <?php while (have_posts()) : the_post(); ?>
