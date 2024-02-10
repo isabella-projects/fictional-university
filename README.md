@@ -2,7 +2,7 @@
     <img src="https://i.imgur.com/YlGrpaq.png" width="800px" height="auto">
 </div>
 
-# 🌐 Fictional University - WordPress Theme
+# 🌐 Fictional University - WordPress Theme & Plugin Development
 
 # 🛠 Tech Stack
 
