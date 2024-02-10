@@ -1,0 +1,19 @@
+{
+    "name": "fictional-university-theme",
+    "version": "1.0.0",
+    "description": "<div align=\"center\">     <img src=\"https://i.imgur.com/YlGrpaq.png\" width=\"800px\" height=\"auto\"> </div>",
+    "main": "index.js",
+    "scripts": {
+        "build": "wp-scripts build",
+        "start": "wp-scripts start"
+    },
+    "keywords": [],
+    "author": "isabella-projects",
+    "license": "ISC",
+    "dependencies": {
+        "@glidejs/glide": "^3.6.0",
+        "@wordpress/scripts": "^27.2.0",
+        "axios": "^1.6.7",
+        "normalize.css": "^8.0.1"
+    }
+}
