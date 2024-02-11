@@ -35,28 +35,28 @@ const magicalSearch = new _modules_Search__WEBPACK_IMPORTED_MODULE_3__["default"
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ HeroSlider)
 /* harmony export */ });
 /* harmony import */ var _glidejs_glide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @glidejs/glide */ "./node_modules/@glidejs/glide/dist/glide.esm.js");
 
 class HeroSlider {
   constructor() {
-    if (document.querySelector(".hero-slider")) {
+    if (document.querySelector('.hero-slider')) {
       // count how many slides there are
-      const dotCount = document.querySelectorAll(".hero-slider__slide").length;
+      const dotCount = document.querySelectorAll('.hero-slider__slide').length;
 
       // Generate the HTML for the navigation dots
-      let dotHTML = "";
+      let dotHTML = '';
       for (let i = 0; i < dotCount; i++) {
         dotHTML += `<button class="slider__bullet glide__bullet" data-glide-dir="=${i}"></button>`;
       }
 
       // Add the dots HTML to the DOM
-      document.querySelector(".glide__bullets").insertAdjacentHTML("beforeend", dotHTML);
+      document.querySelector('.glide__bullets').insertAdjacentHTML('beforeend', dotHTML);
 
       // Actually initialize the glide / slider script
-      var glide = new _glidejs_glide__WEBPACK_IMPORTED_MODULE_0__["default"](".hero-slider", {
-        type: "carousel",
+      var glide = new _glidejs_glide__WEBPACK_IMPORTED_MODULE_0__["default"]('.hero-slider', {
+        type: 'carousel',
         perView: 1,
         autoplay: 3000
       });
@@ -64,7 +64,6 @@ class HeroSlider {
     }
   }
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeroSlider);
 
 /***/ }),
 
@@ -76,24 +75,23 @@ class HeroSlider {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ MobileMenu)
 /* harmony export */ });
 class MobileMenu {
   constructor() {
-    this.menu = document.querySelector(".site-header__menu");
-    this.openButton = document.querySelector(".site-header__menu-trigger");
+    this.menu = document.querySelector('.site-header__menu');
+    this.openButton = document.querySelector('.site-header__menu-trigger');
     this.events();
   }
   events() {
-    this.openButton.addEventListener("click", () => this.openMenu());
+    this.openButton.addEventListener('click', () => this.openMenu());
   }
   openMenu() {
-    this.openButton.classList.toggle("fa-bars");
-    this.openButton.classList.toggle("fa-window-close");
-    this.menu.classList.toggle("site-header__menu--active");
+    this.openButton.classList.toggle('fa-bars');
+    this.openButton.classList.toggle('fa-window-close');
+    this.menu.classList.toggle('site-header__menu--active');
   }
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MobileMenu);
 
 /***/ }),
 
@@ -105,33 +103,81 @@ class MobileMenu {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Search)
 /* harmony export */ });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 
+const TIMEOUT_DURATION = 2000;
 class Search {
   // Initiate object
   constructor() {
-    this.openButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".js-search-trigger");
-    this.closeButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".search-overlay__close");
-    this.searchOverlay = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".search-overlay");
-    this.inputValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()(".search-term");
+    this.resultsDiv = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#search-overlay__results');
+    this.openButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-search-trigger');
+    this.closeButton = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search-overlay__close');
+    this.searchOverlay = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search-overlay');
+    this.inputValue = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.search-term');
+    this.searchField = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#search-term');
     this.events();
+    this.previousValue;
+    this.isOverlayOpen = false;
+    this.isSpinnerVisible = false;
+    this.typingTimer;
   }
+
+  // Events
   events() {
-    this.openButton.on("click", () => this.openOverlay());
-    this.closeButton.on("click", () => this.closeOverlay());
+    this.openButton.on('click', () => this.openOverlay());
+    this.closeButton.on('click', () => this.closeOverlay());
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('keydown', e => this.keyPressDispatcher(e));
+    this.searchField.on('keyup', () => this.typingLogic());
   }
+
+  // Methods
   openOverlay() {
-    this.searchOverlay.addClass("search-overlay--active");
+    this.searchOverlay.addClass('search-overlay--active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').addClass('body-no-scroll');
+    this.isOverlayOpen = true;
   }
   closeOverlay() {
-    this.searchOverlay.removeClass("search-overlay--active");
-    this.inputValue.val("");
+    this.searchOverlay.removeClass('search-overlay--active');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').removeClass('body-no-scroll');
+    this.isOverlayOpen = false;
+    this.inputValue.val('');
+  }
+  keyPressDispatcher(e) {
+    if (e.keyCode == 83 && !this.isOverlayOpen && !jquery__WEBPACK_IMPORTED_MODULE_0___default()('input, textarea').is(':focus')) {
+      this.openOverlay();
+    }
+    if (e.keyCode == 27 && this.searchOverlay.hasClass('search-overlay--active') && this.isOverlayOpen) {
+      this.closeOverlay();
+    }
+    console.log(`Word: ${e.key} | Code: ${e.keyCode}`);
+  }
+  typingLogic() {
+    if (this.searchField.val() === this.previousValue) {
+      return;
+    }
+    clearTimeout(this.typingTimer);
+    if (this.searchField.val()) {
+      if (!this.isSpinnerVisible) {
+        this.resultsDiv.html('<div class="spinner-loader"></div>');
+        this.isSpinnerVisible = true;
+      }
+      this.typingTimer = setTimeout(() => {
+        this.getResults();
+      }, TIMEOUT_DURATION);
+    } else {
+      this.resultsDiv.html('');
+      this.isSpinnerVisible = false;
+    }
+    this.previousValue = this.searchField.val();
+  }
+  getResults() {
+    this.resultsDiv.html(`Real results here..`);
+    this.isSpinnerVisible = false;
   }
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
 
 /***/ }),
 
