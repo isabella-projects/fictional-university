@@ -31,13 +31,13 @@ export default class Search {
     openOverlay() {
         this.searchOverlay.addClass('search-overlay--active');
         $('body').addClass('body-no-scroll');
-        this.searchField.val('');
         setTimeout(() => this.searchField.trigger('focus'), FOCUS_TIMER);
         this.isOverlayOpen = true;
     }
 
     closeOverlay() {
         this.searchOverlay.removeClass('search-overlay--active');
+        this.searchField.val('');
         $('body').removeClass('body-no-scroll');
         this.isOverlayOpen = false;
     }
@@ -91,7 +91,7 @@ export default class Search {
                     ${combinedResults
                         .map(
                             (item) =>
-                                `<li><a href="${item.link}">${item.title.rendered}</a> by ${item.type == 'post' ? ` ${item.authorName}` : ''}</li>`
+                                `<li><a href="${item.link}">${item.title.rendered}</a> ${item.type == 'post' ? ` by ${item.authorName}` : ''}</li>`
                         )
                         .join('')}
                 ${combinedResults.length ? '</ul>' : ''}

@@ -138,12 +138,12 @@ class Search {
   openOverlay() {
     this.searchOverlay.addClass('search-overlay--active');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').addClass('body-no-scroll');
-    this.searchField.val('');
     setTimeout(() => this.searchField.trigger('focus'), FOCUS_TIMER);
     this.isOverlayOpen = true;
   }
   closeOverlay() {
     this.searchOverlay.removeClass('search-overlay--active');
+    this.searchField.val('');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').removeClass('body-no-scroll');
     this.isOverlayOpen = false;
   }
@@ -181,7 +181,7 @@ class Search {
       this.resultsDiv.html(`
                 <h2 class="search-overlay__section-title">General Information</h2>
                 ${combinedResults.length ? '<ul class="link-list min-list">' : '<p>No general information matches that search.</p>'}
-                    ${combinedResults.map(item => `<li><a href="${item.link}">${item.title.rendered}</a> by ${item.type == 'post' ? ` ${item.authorName}` : ''}</li>`).join('')}
+                    ${combinedResults.map(item => `<li><a href="${item.link}">${item.title.rendered}</a> ${item.type == 'post' ? ` by ${item.authorName}` : ''}</li>`).join('')}
                 ${combinedResults.length ? '</ul>' : ''}
             `);
       this.isSpinnerVisible = false;
