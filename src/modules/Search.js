@@ -51,8 +51,6 @@ export default class Search {
         if (e.keyCode == 27 && this.searchOverlay.hasClass('search-overlay--active') && this.isOverlayOpen) {
             this.closeOverlay();
         }
-
-        console.log(`Word: ${e.key} | Code: ${e.keyCode}`);
     }
 
     typingLogic() {
