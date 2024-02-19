@@ -1,6 +1,7 @@
 <?php
 
 require get_theme_file_path('/inc/search-route.php');
+require get_theme_file_path('/inc/like-route.php');
 
 function university_custom_rest()
 {
@@ -166,4 +167,13 @@ function makeNotePrivate($data, $postArr)
     }
 
     return $data;
+}
+
+// All-In-One WP Migration plugin filter to exclude node_modules
+add_filter('ai1wm_exclude_themes_from_export', 'ignoreFiles');
+
+function ignoreFiles()
+{
+    $exclude_filters[] = 'fictional-university-theme/node_modules';
+    return $exclude_filters;
 }

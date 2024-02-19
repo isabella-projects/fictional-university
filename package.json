@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "wp-scripts build",
-        "start": "wp-scripts start"
+        "dev": "wp-scripts start"
     },
     "keywords": [],
     "author": "isabella-projects",
