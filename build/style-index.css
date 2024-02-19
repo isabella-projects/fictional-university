@@ -100,6 +100,11 @@ li {
   text-align: right;
 }
 
+@media (width < 529px) {
+  .t-center {
+    text-wrap: wrap;
+  }
+}
 .t-center {
   text-align: center;
 }

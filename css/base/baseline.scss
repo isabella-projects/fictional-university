@@ -16,6 +16,12 @@
   }
 }
 
+@mixin atTiny {
+  @media (width < 529px) {
+    @content;
+  }
+}
+
 body {
   color: #333;
   font-family: "Roboto", sans-serif;
