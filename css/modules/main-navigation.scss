@@ -37,9 +37,11 @@
   color: #fff;
   text-decoration: none;
   font-weight: 300;
+
   @include atMedium {
     display: inline-block;
     padding: 0;
+    letter-spacing: 1.2pt;
   }
 }
 
