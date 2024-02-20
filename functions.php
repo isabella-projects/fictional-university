@@ -169,7 +169,7 @@ function makeNotePrivate($data, $postArr)
     return $data;
 }
 
-// All-In-One WP Migration plugin filter to exclude node_modules
+// All-In-One WP Migration plugin filter to exclude node_modules's large files from exporting
 add_filter('ai1wm_exclude_themes_from_export', 'ignoreFiles');
 
 function ignoreFiles()
