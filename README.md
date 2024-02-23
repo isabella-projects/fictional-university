@@ -20,6 +20,9 @@
     <img src="https://github.com/devicons/devicon/blob/master/icons/vscode/vscode-original.svg" title="VSCode" alt="VSCode" width="45" height="45"/>
 </div>
 
+# 📝 Theme Overview
+![fictional-university](https://github.com/isabella-projects/fictional-university/assets/76888305/1a395559-0fb7-44b5-93d8-26d90e22a2ec)
+
 # 🧪 Run Locally
 
 ## Clone the project
